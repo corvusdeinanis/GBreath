@@ -10,6 +10,7 @@
     overflow: hidden;
     text-overflow: ellipsis;
     outline: none;
+    font-weight: 600;
   }
 }
 </style>

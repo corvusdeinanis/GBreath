@@ -23,7 +23,7 @@ export const techniques: IBreathingModal[] = [
       pt: "A respiração profunda é uma maneira fácil de relaxar e deixar suas preocupações de lado. Você pode fazer isso em qualquer lugar e leva apenas alguns minutos. Também chamada de respiração abdominal e respiração diafragmática, essa respiração ajuda a aliviar o estresse. Também diminui a pressão arterial e alivia a tensão nos músculos.",
       en: "Deep breathing is an easy way to relax and let your worries go. You can do it pretty much anywhere, and it only takes a few minutes. Also called belly breathing, diaphragmatic breathing, and abdominal breathing, it helps ease stress. It can also lower your blood pressure and relax tense muscles.",
     },
-    steps: [4, 4, 6, 0],
+    steps: [1, 1, 1, 0],
     showBreathingModal: false,
     showPreBreathingModal: false,
   },

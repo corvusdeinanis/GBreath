@@ -14,7 +14,11 @@
     "@sveltejs/vite-plugin-svelte": "^1.0.0-next.11",
     "@tsconfig/svelte": "^2.0.1",
     "@types/node": "^16.9.2",
+    "autoprefixer": "^10.3.7",
+    "cssnano": "^5.0.8",
     "husky": "^7.0.2",
+    "postcss": "^8.3.9",
+    "postcss-load-config": "^3.1.0",
     "prettier": "^2.4.1",
     "prettier-plugin-svelte": "^2.4.0",
     "sass": "^1.41.1",
@@ -25,13 +29,10 @@
     "tslib": "^2.2.0",
     "typescript": "^4.3.2",
     "vite": "^2.5.4",
-    "vite-plugin-pwa": "^0.11.2",
-    "postcss": "^8.3.9",
-    "postcss-load-config": "^3.1.0",
-    "autoprefixer": "^10.3.7",
-    "cssnano": "^5.0.8"
+    "vite-plugin-pwa": "^0.11.2"
   },
   "dependencies": {
+    "firebase": "^9.6.8",
     "svelte-i18n": "^3.3.13"
   }
 }

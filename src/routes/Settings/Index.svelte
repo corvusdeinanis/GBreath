@@ -76,10 +76,20 @@ import Icon from "@iconify/svelte";
 import SettingsTopbar from "./components/SettingsTopbar.svelte";
 import { userPreferences, ChangeUserPreference } from "@/utils/userPreferences";
 import { locale, _ } from "svelte-i18n";
+import { authStore, signInWithGoogle, signOutFunction } from "@/store/auth";
+import type { User } from "firebase/auth";
+import { streakStore } from "@/store/streak";
 
 let langPref = "pt";
 let allowVibration = false;
 let enableDarkMode = false;
+let haveUser = false;
+let user = null as User | null;
+
+authStore.subscribe((val) => {
+  haveUser = val.haveUser;
+  user = val.user;
+});
 
 function changeLang(e: Event) {
   langPref = (e.target as HTMLInputElement).value;
@@ -112,10 +122,8 @@ $: {
 
 <SettingsTopbar />
 <div class="settings-page">
-  {#if false}
-    <button
-      class="sign-in-with-google"
-      on:click="{() => alert(`${$_('settings.not_working_yet')}!`)}">
+  {#if !haveUser}
+    <button class="sign-in-with-google" on:click="{() => signInWithGoogle()}">
       <Icon
         icon="flat-color-icons:google"
         style="width: 32px !important; height: 32px !important;" />
@@ -125,6 +133,21 @@ $: {
     <br />
     <h3>{$_("settings.set_your_breathing_streak_goal")}</h3>
     <small>{$_("settings.not_working_yet")}!</small>
+  {/if}
+  {#if haveUser}
+    <img
+      src="{user.photoURL}"
+      alt="{user.displayName} Profile picture"
+      style="width: 35%; height: 35%; border-radius: 50%; object-fit: cover;" />
+    <h2>{user.displayName}</h2>
+    <br />
+    <button
+      class="btn outlined half border-red"
+      on:click="{() => signOutFunction()}">
+      {$_("settings.sign_out")}
+    </button>
+  {/if}
+  {#if haveUser}
     <br />
     <div class="input-container">
       <input
@@ -132,6 +155,7 @@ $: {
         name="goal"
         id="goal"
         min="0"
+        bind:value="{$streakStore.userGoal}"
         placeholder="{$_('settings.set_here_your_streak_goal')}" />
       <div>{$_("settings.numbers_of_days")}</div>
     </div>
@@ -155,7 +179,7 @@ $: {
         id="allow-vibration"
         on:change="{(e) => changeVibration()}"
         bind:checked="{allowVibration}" />
-      <span class="slider round"></span>
+      <span class="slider rounded"></span>
     </label>
   </div>
   <br />
@@ -167,7 +191,7 @@ $: {
         id="enable-dark-mode"
         on:change="{(e) => changeTheme()}"
         bind:checked="{enableDarkMode}" />
-      <span class="slider round"></span>
+      <span class="slider rounded"></span>
     </label>
   </div>
 </div>

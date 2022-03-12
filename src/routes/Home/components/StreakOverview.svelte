@@ -30,17 +30,26 @@
 </style>
 
 <script lang="ts">
-  import { _ } from "svelte-i18n"
+import { streakStore } from "@/store/streak";
+import { _ } from "svelte-i18n";
+
+let currentDayStreak = 0;
+let userGoal = 0;
+
+streakStore.subscribe((val) => {
+  currentDayStreak = val.currentDayStreak;
+  userGoal = val.userGoal;
+});
 </script>
 
 <section class="streak-overview">
   <div class="streak-overview-item">
     <small>{$_("home.streak.YOURSTREAK")}</small>
-    <p>10 {$_("home.streak.Days")}</p>
+    <p>{currentDayStreak} {$_("home.streak.Days")}</p>
   </div>
   <div class="separator"></div>
   <div class="streak-overview-item">
     <small>{$_("home.streak.YOURGOAL")}</small>
-    <p>90 {$_("home.streak.Days")}</p>
+    <p>{userGoal} {$_("home.streak.Days")}</p>
   </div>
 </section>

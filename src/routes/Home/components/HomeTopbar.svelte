@@ -1,5 +1,6 @@
 <style lang="scss" scoped>
 header {
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -8,6 +9,7 @@ header {
     font-size: 24px;
     cursor: pointer;
     user-select: none;
+    font-weight: 600;
   }
   button {
     display: grid;
@@ -15,6 +17,7 @@ header {
     border: 0;
     background: transparent;
     cursor: pointer;
+    width: fit-content;
   }
 }
 </style>

@@ -124,6 +124,7 @@ import {
   inhaleVibrate,
 } from "@/data/vibrate";
 import { onDestroy, onMount } from "svelte";
+import { setPractice } from "@/store/streak";
 
 let currentAnimationDuration: number;
 let currentAnimation = "";
@@ -223,6 +224,10 @@ function rest() {
   if (alreadyRun === repeatTime) {
     navigator.vibrate(finishVibrate);
     isFinished = true;
+    setPractice({
+      exercice: techniques[id].name["en"],
+      repetitions: userPreferences.defaultBreathingRepeat,
+    }).then(() => {});
     clearInterval(stepTimer);
   }
 }

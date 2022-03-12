@@ -16,7 +16,6 @@
   ul,
   ul li {
     align-self: flex-start;
-    list-style: none;
   }
   .action-buttons {
     width: 100%;
@@ -80,25 +79,25 @@ function changeRepeatTimeAndSave() {
     <ul class="steps">
       {#if techniques[id].steps[0] > 0}
         <li>
-          &#8226; {$_("breathing.details.inhale_for")}
+          {$_("breathing.details.inhale_for")}
           {techniques[id].steps[0]}s;
         </li>
       {/if}
       {#if techniques[id].steps[1] > 0}
         <li>
-          &#8226; {$_("breathing.details.hold_for")}
+          {$_("breathing.details.hold_for")}
           {techniques[id].steps[1]}s;
         </li>
       {/if}
       {#if techniques[id].steps[2] > 0}
         <li>
-          &#8226; {$_("breathing.details.exhale_for")}
+          {$_("breathing.details.exhale_for")}
           {techniques[id].steps[2]}s;
         </li>
       {/if}
       {#if techniques[id].steps[3] > 0}
         <li>
-          &#8226; {$_("breathing.details.take_a_rest_for")}
+          {$_("breathing.details.take_a_rest_for")}
           {techniques[id].steps[3]}s;
         </li>
       {/if}

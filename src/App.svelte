@@ -1,23 +1,32 @@
 <script lang="ts">
-import { Router, Route, globalHistory } from "svelte-navigator";
+import { Router, Route } from "svelte-navigator";
 import Index from "@/routes/Home/Index.svelte";
 import Settings from "@/routes/Settings/Index.svelte";
 import { userPreferences } from "@/utils/userPreferences";
 import BreathingDetails from "@/routes/BreathingRoutes/Details/Index.svelte";
 import BreathingPractice from "@/routes/BreathingRoutes/Practice/Index.svelte";
-import pt from '@/i18n/messages/pt.json'
-import en from '@/i18n/messages/en.json'
-import { addMessages, init, getLocaleFromNavigator } from "svelte-i18n";
+import pt from "@/i18n/messages/pt.json";
+import en from "@/i18n/messages/en.json";
+import { addMessages, init } from "svelte-i18n";
+import { analytics, app } from "./firebase";
+import { onMount } from "svelte";
+import { getCurrentUser } from "./store/auth";
+import { getUserStreak } from "./store/streak";
 
 document.body.classList.add(userPreferences.theme);
 
-addMessages('pt', pt);
-addMessages('en', en);
+addMessages("pt", pt);
+addMessages("en", en);
+
+onMount(async () => {
+  analytics(app);
+  getCurrentUser(getUserStreak);
+});
 
 $: {
   init({
-    fallbackLocale: 'pt',
-    initialLocale: userPreferences.lang
+    fallbackLocale: "pt",
+    initialLocale: userPreferences.lang,
   });
 }
 </script>
